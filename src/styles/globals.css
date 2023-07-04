@@ -1,3 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+    :root {
+        --primary: 227, 19%, 14%, 1;
+        --primary-foreground: 227, 19%, 14%, 1;
+
+        --secondary: 0, 0%, 42%, 1;
+
+        --border: 214.3 31.8% 91.4%;
+        --input: 216, 16%, 84%, 1
+        --ring: 227, 19%, 14%, 1;
+
+        --heading-dark: 227, 19%, 14%, 1;
+        --heading-pink: 330, 91%, 59%, 1;
+        --heading-blue: 211, 99%, 49%, 1;
+        --heading-orange: 25, 95%, 53%, 1;
+    }
+}
