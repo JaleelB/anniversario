@@ -2,6 +2,10 @@ import Button from "~/components/ui/button";
 import Input from "~/components/ui/input";
 
 export default function ConfigPage(){
+
+  const currentDate = new Date();
+  const minDate = `${currentDate.getFullYear()}-${String(currentDate.getMonth() + 1).padStart(2, '0')}-${String(currentDate.getDate()).padStart(2, '0')}`;
+
   return(
       <section className="flex items-center justify-center space-y-6 pb-8 pt-12 md:pb-12 md:pt-10 lg:py-32 mx-auto">
           <div className="w-full max-w-2xl flex flex-col items-center gap-6 md:gap-12 text-left px-4 sm:px-0">
@@ -32,6 +36,7 @@ export default function ConfigPage(){
                 name="birthdate"
                 placeholder="Pick a date"
                 helper="Your date of birth is used to calculate the number of days till your birthday"
+                min={minDate}
                 required
               />
             </div>
