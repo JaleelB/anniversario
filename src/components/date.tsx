@@ -32,7 +32,7 @@ function DatePickerInput({
     <div className="w-full flex flex-col">
       {label && <label className="text-left mb-1.5 font-semibold text-primary text-sm">{label}</label>}
       <DatePicker
-        {...register(name)}
+        {...register(name, { required: "Birthdate required" })}
         selected={selected}
         onChange={handler}
         dateFormat="MM-dd-yyyy"
@@ -45,7 +45,8 @@ function DatePickerInput({
           text-primary py-2.5 px-4 rounded-md
           shadow-sm transition-all text-sm
           duration-200 -full focus-visible:outline-none focus-visible:ring-2 
-          focus-visible:ring-ring focus-visible:ring-offset-2 focus:outline-none focus:ring
+          ${error ? "focus-visible:ring-red-600" : "focus-visible:ring-ring"} focus-visible:ring-offset-2 focus:outline-none focus:ring
+          ${error ? "border-red-500" : ""}
         `}
       />
       {!error && (
