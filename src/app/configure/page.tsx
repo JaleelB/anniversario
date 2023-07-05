@@ -6,15 +6,17 @@ import { useState } from "react";
 import DatePickerInput from "~/components/date";
 import Button from "~/components/ui/button";
 import Input from "~/components/ui/input";
+import { format } from "date-fns";
+import { useRouter } from "next/navigation";
 
-const countdownSchema = z.object({
+const schema = z.object({
   name: z.string().nonempty({ message: "Name is required" }),
-  birthdate: z.string().nonempty({ message: "Birthdate is required" }),
 });
 
-type FormData = z.infer<typeof countdownSchema>;
+type FormData = z.infer<typeof schema>;
 
 export default function ConfigPage() {
+
   const currentDate = new Date();
   const minDate = new Date(
     currentDate.getFullYear(),
@@ -22,14 +24,20 @@ export default function ConfigPage() {
     currentDate.getDate()
   );
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+  const router = useRouter();
 
   const methods = useForm<FormData>({
-    resolver: zodResolver(countdownSchema),
+    resolver: zodResolver(schema),
   });
 
   const onSubmit: SubmitHandler<FormData> = (data) => {
-    const { name, birthdate } = data;
-    console.log(name, birthdate)
+    const { name } = data;
+    const formattedDate = (selectedDate ? format(selectedDate, "MM-dd-yyyy") : "");
+    
+    if (name && formattedDate) {
+      const formattedName = name.toLowerCase().replace(/\s+/g, "-");
+      router.push(`/countdown/${formattedName}/${formattedDate}`);
+    }
   };
 
   return (
