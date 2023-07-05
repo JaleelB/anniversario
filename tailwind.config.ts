@@ -9,8 +9,6 @@ export default {
         border: "hsla(var(--border))",
         input: "hsla(var(--input))",
         ring: "hsla(var(--ring))",
-        background: "hsla(var(--background))",
-        foreground: "hsla(var(--foreground))",
         primary: {
           DEFAULT: "hsla(var(--primary))",
           foreground: "hsla(var(--primary-foreground))",

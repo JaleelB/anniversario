@@ -18,4 +18,95 @@
         --heading-blue: 211, 99%, 49%, 1;
         --heading-orange: 25, 95%, 53%, 1;
     }
+
+    .custom-calendar-popup .react-datepicker__header {
+        padding-inline: .5rem;
+        border: none;
+        background-color: white;
+    }
+
+    .custom-calendar-popup .react-datepicker {
+        border: 1px solid hsla(var(--border));
+    }
+    
+    .custom-calendar-popup .react-datepicker__day {
+        color: hsla(var(--primary)); 
+    }
+
+    .custom-calendar-popup .react-datepicker__day--today {
+        font-weight: bold;
+    }
+
+    .custom-calendar-popup .react-datepicker__navigation--previous,
+    .custom-calendar-popup .react-datepicker__navigation--next {
+        top: .5rem;
+        width: 1.75rem;
+        height: 1.75rem;
+        margin-inline: 1rem;
+        border: 1px solid hsla(var(--border));
+        border-radius: 4px;
+    }
+
+    .custom-calendar-popup .react-datepicker__navigation--previous span,
+    .custom-calendar-popup .react-datepicker__navigation--next span {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        color: hsla(var(--primary));
+    }
+
+    .custom-calendar-popup .react-datepicker .react-datepicker__navigation-icon::before{
+        position: relative;
+        border-width: 2px 2px 0 0;
+        top:0;
+        left:0;
+        width:7px;
+        height: 7px
+    }
+      
+    .custom-calendar-popup .react-datepicker__day--selected ,
+    .custom-calendar-popup .react-datepicker__day--keyboard-selected{
+        background-color: hsla(var(--primary)); 
+        color: #fff;
+    }
+
+    .react-datepicker-popper[data-placement^=bottom] .react-datepicker__triangle{ 
+        display: none !important;
+    }
+      
+    .custom-calendar-popup .react-datepicker__day--today {
+        font-weight: bold;
+    }
+    
+    .custom-calendar-popup .react-datepicker__day--disabled {
+        color: gray;
+        cursor: not-allowed;
+    }
+    
+    .custom-calendar-popup .react-datepicker__month {
+        padding-inline: .5rem;
+        font-size: .8rem;
+        margin-top: 0;
+    }
+
+    .custom-calendar-popup .react-datepicker__current-month {
+        padding: .5rem;
+        font-size: .9rem;
+        font-weight: 500;
+    }
+    
+    .custom-calendar-popup .react-datepicker__day--outside-month {
+        opacity: 0.5;
+    }
+
+    
+    .custom-calendar-popup .react-datepicker__day-names {
+        background-color: var(--primary);
+        color: var(--secondary); 
+    }
+
+      
 }
