@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-misused-promises */
 "use client"
 import { type SubmitHandler, useForm, FormProvider } from "react-hook-form";
 import { z } from "zod";
