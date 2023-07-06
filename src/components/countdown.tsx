@@ -1,6 +1,10 @@
+/* eslint-disable @typescript-eslint/no-misused-promises */
 "use client"
 import React from "react";
 import Button from "./ui/button";
+import useClipboard from "~/hooks/use-copy";
+import ToastContext from "~/context/toast-context";
+import { usePathname } from "next/navigation";
 
 interface Date {
     name: string;
@@ -11,6 +15,9 @@ export default function Countdown({ name, dob}: Date){
 
     const [time, setTime] = React.useState(0);
     const dateOfBirth = React.useMemo(() => new Date(dob), [dob]);
+    const { isCopied, copyToClipboard } = useClipboard();
+    const { addToast } = React.useContext(ToastContext);
+    const pathname = usePathname();
 
     const getTimeDifference = React.useCallback((): number => {
         const now = new Date();
@@ -51,6 +58,18 @@ export default function Countdown({ name, dob}: Date){
     const nextBirthdayMonth = monthNames[dateOfBirth.getMonth()] || "Unknown";
     const nextBirthdayDate = `${dateOfBirth.getDate()} ${nextBirthdayMonth} ${nextBirthdayYear}`;
 
+    async function handleCopy(text: string){
+
+        await copyToClipboard(text);
+        if(isCopied){
+            addToast({
+                title: 'Copied to clipboard',
+                message: 'The share link has been copied to your clipboard.',
+                variant: 'default'
+            });
+        }
+    }
+
 
     return (
         <div className="w-full flex flex-col">
@@ -85,9 +104,11 @@ export default function Countdown({ name, dob}: Date){
             <Button 
                 size="lg" 
                 className="mx-auto md:mx-0 md:ml-auto mt-8 sm:mt-12 lg:mt-20"
+                onClick={() => handleCopy(`${window.location.origin}${pathname}`)}
             >
                 Share Countdown
             </Button>
         </div>
     );
 }
+

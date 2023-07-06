@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import { Inter as FontSans } from "next/font/google"
 import Header from '~/components/header';
 import Footer from '~/components/footer';
+import ToastProvider from '~/components/toast-provider';
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -19,7 +20,7 @@ export const metadata = {
     default: 'Anniversario',
     template: `%s | Anniversario`,
   },
-  description: "Anniversario is a beautifully designed birthday countdown app that keeps you excited about your upcoming birthdays.",
+  description: "Anniversario is a birthday countdown app that keeps you excited about your upcoming birthdays.",
   keywords: [
     "Birthday Countdown",
     "Personalized Countdown",
@@ -49,13 +50,13 @@ export const metadata = {
     locale: "en_US",
     url: 'https://anniversario.jaleelbennett.com',
     title: 'Anniversario',
-    description: "Anniversario is a beautifully designed birthday countdown app that keeps you excited about your upcoming birthdays.",
+    description: "Anniversario is a birthday countdown app that keeps you excited about your upcoming birthdays.",
     siteName: 'Aniversario',
   },
   twitter: {
     card: "summary_large_image",
     title: 'Anniversario',
-    description: "Anniversario is a beautifully designed birthday countdown app that keeps you excited about your upcoming birthdays.",
+    description: "Anniversario is a birthday countdown app that keeps you excited about your upcoming birthdays.",
     images: [`https://anniversario.jaleelbennett.com/og.jpg`],
     creator: "@jal_eelll",
   },
@@ -86,7 +87,9 @@ export default function RootLayout({
       >
           <div className='flex w-screen min-h-screen flex-col'>
             <Header/>
-            {children}
+            <ToastProvider>
+              {children}
+            </ToastProvider>
             <Footer/>
           </div>
       </body>
