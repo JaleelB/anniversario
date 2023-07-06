@@ -1,28 +1,36 @@
-# Create T3 App
+<a href="https://anniversario.jaleelbennett.com/">
+  <img alt="Anniversario" src="https://raw.githubusercontent.com/JaleelB/anniversario/main/public/og.png?token=GHSAT0AAAAAABQI3PU2HEIR6XC54263PSDQZFGHMAA">
+  <h1 align="center">Anniversario</h1>
+</a>
 
-This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+<p align="center">
+  Anniversario is a birthday countdown app that keeps you excited about your upcoming birthdays.
+</p>
 
-## What's next? How do I make an app with this?
+<p align="center">
+  <a href="https://twitter.com/jal_eelll">
+    <img src="https://img.shields.io/twitter/follow/jal_eelll?style=flat&label=%40jal_eelll&logo=twitter&color=0bf&logoColor=fff" alt="Twitter" />
+  </a>
+  <a href="https://github.com/JaleelB/anniversario/blob/main/LICENSE">
+    <img src="https://img.shields.io/github/license/JaleelB/anniversario?label=license&logo=github&color=f80&logoColor=fff" alt="License" />
+  </a>
+</p>
 
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
+## Introduction
 
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
+Your project is a countdown timer that helps users celebrate their special day. There are three pages: Home, Configure, and Countdown. 
 
-- [Next.js](https://nextjs.org)
-- [NextAuth.js](https://next-auth.js.org)
-- [Prisma](https://prisma.io)
-- [Tailwind CSS](https://tailwindcss.com)
-- [tRPC](https://trpc.io)
+- The **Home** page greets the user and guides them to set up their special countdown.
+- The **Configure** page allows the user to input their name and the date they want to count down to.
+- The **Countdown** page shows the countdown to the user's special day, celebrating with them when the countdown ends.
 
-## Learn More
+## Tech Stack
 
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
+- [React](https://reactjs.org/) - for building user interface.
+- [Next.js](https://nextjs.org/) - a framework for building React applications with server-side rendering.
+- [Tailwind CSS](https://tailwindcss.com/) - for styling.
+- [Vercel](https://vercel.com/) - for hosting.
 
-- [Documentation](https://create.t3.gg/)
-- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
+## Author
 
-You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
-
-## How do I deploy this?
-
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+- Jaleel Bennett ([@jal_eelll](https://twitter.com/jal_eelll))
