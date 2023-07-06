@@ -34,6 +34,9 @@ export default function CountdownPage() {
         const birthDate = slug[1].replace(/-/g, "/");
 
        //check that the date is valid
+        if (isNaN(new Date(birthDate).getTime())) {
+            redirect("/configure");
+        }
 
         return { name, birthDate };
     }
