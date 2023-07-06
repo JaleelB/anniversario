@@ -33,6 +33,9 @@ export default {
         sans: ["var(--font-sans)", ...fontFamily.sans],
         heading: ["var(--font-heading)", ...fontFamily.sans],
       },
+      screens: {
+        'xs': '480px',
+      },
     },
   },
   plugins: [],
