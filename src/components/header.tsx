@@ -14,7 +14,7 @@ export default function Header(){
                             alt="logo"
                         />
                     </Link>
-                    <Link href="/">
+                    <Link href="https://github.com/JaleelB/anniversario">
                         <Image 
                             width={30}
                             height={30}
