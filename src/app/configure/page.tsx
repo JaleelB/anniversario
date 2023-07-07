@@ -3,16 +3,21 @@
 import { type SubmitHandler, useForm, FormProvider } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
+import React from "react";
 import DatePickerInput from "~/components/date";
 import Button from "~/components/ui/button";
 import Input from "~/components/ui/input";
 import { format } from "date-fns";
 import { useRouter } from "next/navigation";
+import ToastContext from "~/context/toast-context";
 
 const schema = z.object({
   name: z.string().nonempty({ message: "Name is required" }),
-});
+  birthdate: z.date({
+    required_error: "Birthdate is required",
+    invalid_type_error: "That's not a date!",
+  }).nullable(),
+})
 
 type FormData = z.infer<typeof schema>;
 
@@ -24,20 +29,31 @@ export default function ConfigPage() {
     currentDate.getMonth(),
     currentDate.getDate()
   );
-  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+
   const router = useRouter();
+  const { addToast } = React.useContext(ToastContext);
 
   const methods = useForm<FormData>({
     resolver: zodResolver(schema),
   });
 
   const onSubmit: SubmitHandler<FormData> = (data) => {
-    const { name } = data;
-    const formattedDate = (selectedDate ? format(selectedDate, "MM-dd-yyyy") : "");
+    const { name, birthdate } = data;
+    const formattedDate = (birthdate ? format(birthdate, "MM-dd-yyyy") : "");
     
     if (name && formattedDate) {
+      
       const formattedName = name.toLowerCase().replace(/\s+/g, "-");
       router.push(`/countdown/${formattedName}/${formattedDate}`);
+
+    }else{
+
+      return addToast({
+        title: "Error",
+        variant: "destructive",
+        message: "Please fill in all fields",
+      })
+      
     }
   };
 
@@ -69,9 +85,8 @@ export default function ConfigPage() {
               label="Birthdate"
               name="birthdate"
               helper="Your date of birth is used to calculate the number of days till your birthday"
-              selected={selectedDate}
               minDate={minDate}
-              handler={(date: Date) => setSelectedDate(date)}
+              error={methods.formState.errors.birthdate ? methods.formState.errors.birthdate.message as string : ""}
             />
             <Button
               size="lg"
