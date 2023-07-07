@@ -10,7 +10,7 @@ interface CountdownInfo {
 
 export default function CountdownPage({ params }: { params: { slug: string[] } }) {
     
-    if(!params.slug){
+    if(!params.slug || params.slug.length < 2){
         redirect("/configure");
     }
 
