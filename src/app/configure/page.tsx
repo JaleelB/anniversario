@@ -42,9 +42,9 @@ export default function ConfigPage() {
     const formattedDate = (birthdate ? format(birthdate, "MM-dd-yyyy") : "");
     
     if (name && formattedDate) {
-      
+
       const formattedName = name.toLowerCase().replace(/\s+/g, "-");
-      router.push(`/countdown/${formattedName}/${formattedDate}`);
+      router.push(`/countdown?name=${formattedName}&dob=${formattedDate}`);
 
     }else{
 
