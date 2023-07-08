@@ -1,25 +1,56 @@
-import Link from "next/link";
-import Button from "~/components/ui/button";
+"use client"
+import { notFound, redirect, useSearchParams } from "next/navigation";
+import Celebrate from "~/components/celebrate";
+import Countdown from "~/components/countdown";
 
-export default function CountdownRedirectPage() {
+interface CountdownInfo {
+    formattedName: string;
+    formattedDob: string;
+}
+
+export default function CountdownPage() {
+
+    const urlParams = useSearchParams();
+    const name = urlParams.get('name');
+    const birthDate = urlParams.get('dob');
+
+    if(!name || !birthDate){
+        notFound()
+    }
+
+    const { formattedName, formattedDob } = getCountdownInfo(name, birthDate);
+
+    const dob = new Date(formattedDob); 
+    const now = new Date();
+
+    const difference = dob.getTime() - now.getTime();
+
+    function getCountdownInfo(name: string, dob:string): CountdownInfo {
+
+        const formattedName = name
+            .split("-")
+            .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+            .join(" ");
+        const formattedDob = dob.replace(/-/g, "/");
+
+       //check that the date is valid
+        if (isNaN(new Date(formattedDob).getTime())) {
+            redirect("/configure");
+        }
+
+        return { formattedName, formattedDob };
+    }
+
 
     return (
-        <section className="text-center space-y-6 pb-8 pt-12 md:pb-12 md:pt-10 lg:py-32 mx-auto px-4 sm:px-0">
-            <h1 className="font-heading uppercase text-7xl sm:text-8xl md:text-10xl text-primary lg:text-[110px] xl:text-[150px] font-bold leading-tight">
-                uh-oh
-            </h1>
-            <h2 className="font-heading text-2xl sm:text-4xl lg:text-5xl md:max-w-xl lg:max-w-3xl">
-                It appears that you have not yet started a countdown.
-            </h2>
-            <Link href="/configure">
-                <Button
-                    size="lg"
-                    type="submit"
-                    className="mt-6 md:mt-12 w-full sm:ml-auto sm:w-auto"
-                >
-                    Start Countdown
-                </Button>
-            </Link>
+        <section className="flex items-center justify-center space-y-6 pb-8 pt-12 md:pb-12 md:pt-10 lg:py-32 mx-auto">
+            <div className="w-full max-w-5xl flex flex-col items-center gap-6 md:gap-12 text-left px-4 sm:px-8">
+                {
+                    (difference > 0) ?
+                    <Countdown name={formattedName} dob={formattedDob} />:
+                    <Celebrate name={formattedName}/>
+                }
+            </div>
         </section>
     );
 }
