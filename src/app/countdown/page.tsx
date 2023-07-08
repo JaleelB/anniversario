@@ -1,5 +1,5 @@
 "use client"
-import { notFound, redirect, useSearchParams } from "next/navigation";
+import { redirect, useSearchParams } from "next/navigation";
 import Celebrate from "~/components/celebrate";
 import Countdown from "~/components/countdown";
 
@@ -15,7 +15,7 @@ export default function CountdownPage() {
     const birthDate = urlParams.get('dob');
 
     if(!name || !birthDate){
-        notFound()
+        redirect("/configure");
     }
 
     const { formattedName, formattedDob } = getCountdownInfo(name, birthDate);
