@@ -25,6 +25,11 @@ export default function CountdownPage() {
 
     const difference = dob.getTime() - now.getTime();
 
+    //redirect if the date is in the past
+    if(difference < 0){
+        redirect("/configure");
+    }
+
     function getCountdownInfo(name: string, dob:string): CountdownInfo {
 
         const formattedName = name
