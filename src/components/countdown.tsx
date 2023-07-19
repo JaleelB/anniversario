@@ -58,9 +58,15 @@ export default function Countdown({ name, dob}: Date){
     const nextBirthdayMonth = monthNames[dateOfBirth.getMonth()] || "Unknown";
     const nextBirthdayDate = `${dateOfBirth.getDate()} ${nextBirthdayMonth} ${nextBirthdayYear}`;
 
-    async function handleCopy(text: string){
+    async function copyURL(){
 
-        await copyToClipboard(text);
+        const formattedDob = dob.replace(/\//g, '-');
+        const url = new URL(window.location.href);
+        url.searchParams.set('name', name.toLowerCase());
+        url.searchParams.set('dob', formattedDob);
+
+        await copyToClipboard(url.href);
+
         if(isCopied){
             addToast({
                 title: 'Copied to clipboard',
@@ -104,7 +110,7 @@ export default function Countdown({ name, dob}: Date){
             <Button 
                 size="lg" 
                 className="mx-auto md:mx-0 md:ml-auto mt-8 sm:mt-12 lg:mt-20"
-                onClick={() => handleCopy(`${window.location.origin}${pathname}`)}
+                onClick={copyURL}
             >
                 Share Countdown
             </Button>
