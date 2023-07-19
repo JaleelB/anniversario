@@ -17,7 +17,6 @@ export default function Countdown({ name, dob}: Date){
     const dateOfBirth = React.useMemo(() => new Date(dob), [dob]);
     const { isCopied, copyToClipboard } = useClipboard();
     const { addToast } = React.useContext(ToastContext);
-    const pathname = usePathname();
 
     const getTimeDifference = React.useCallback((): number => {
         const now = new Date();

@@ -22,10 +22,10 @@ export default function Toast ({ title, message, variant, duration }: ToastProps
 
   if (!visible) return null;
 
-  const bgColor = variant === 'destructive' ? 'bg-red-500' : 'bg-primary';
+  const bgColor = variant === 'destructive' ? 'bg-red-500' : 'bg-white';
 
   return (
-    <div className={`fixed z-50 w-max bottom-4 md:bottom-8 ${bgColor} right-0 md:right-4 mt-4 mr-4 text-white text-sm py-3 px-6 rounded-md cursor-pointer`}>
+    <div className={`fixed z-50 w-max bottom-4 md:bottom-8 ${bgColor} right-0 md:right-4 mt-4 mr-4 text-primary text-sm py-3 px-6 rounded-md border shadow-sm cursor-pointer`}>
         <div className='mr-8'>
             {title && <h3 className='font-semibold mb-0.5'>{title}</h3>}
             <p className='opacity-90'>{message}</p>
